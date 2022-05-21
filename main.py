@@ -23,15 +23,18 @@ while True:
             cv2.putText(img, "Number Plate", (x, y - 5),
                         cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, color, 2)
             imgRoi = img[y:y + h, x:x + w]
-            cv2.imshow("ROI", imgRoi)
+            cv2.imshow("Result", imgRoi)
 
     cv2.imshow("Result", img)
 
-    if cv2.waitKey(1) & 0xFF == ord('s'):
-        cv2.imwrite("scanned_plate/NuPlate_" + str(count) + ".jpg", imgRoi)
-        cv2.rectangle(img, (0, 200), (640, 300), (0, 255, 0), cv2.FILLED)
-        cv2.putText(img, "Scan Saved", (150, 265), cv2.FONT_HERSHEY_DUPLEX,
-                    2, (0, 0, 255), 2)
-        cv2.imshow("Result", img)
-        cv2.waitKey(500)
-        count += 1
+    if cv2.waitKey(25) & 0xFF == ord('q'):
+        break
+
+    #if cv2.waitKey(1) & 0xFF == ord('s'):
+    cv2.imwrite("scanned_plate/NuPlate_" + str(count) + ".jpg", imgRoi)
+    cv2.rectangle(img, (0, 200), (640, 300), (0, 255, 0), cv2.FILLED)
+    cv2.putText(img, "Scan Saved", (150, 265), cv2.FONT_HERSHEY_DUPLEX,
+                2, (0, 0, 255), 2)
+    cv2.imshow("Result", img)
+    cv2.waitKey(500)
+    count += 1
